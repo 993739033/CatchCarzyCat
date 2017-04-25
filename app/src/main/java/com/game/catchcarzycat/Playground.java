@@ -12,10 +12,41 @@ import android.view.SurfaceView;
 
 public class Playground extends SurfaceView {
     SurfaceHolder holder;
+    private static final  int RAW=10;
+    private static final int COL=10;
+    private static final int BLOCKS=10;
+
+    private Dot[][] Matrix ;
+    private Dot cat;
+
     public Playground(Context context) {
         super(context);
         getHolder().addCallback(callback);
+        Matrix = new Dot[RAW][COL];
+        for (int i=0;i<RAW;i++) {
+            for (int j=0;j<COL;j++) {
+                Matrix[i][j] = new Dot(i, j);
+            }
+        }
+        initGame();
+    }
+    private void initGame(){
+        for (int i=0;i<RAW;i++) {
+            for (int j=0;j<COL;j++) {
+                Matrix[i][j].setStatus(Dot.STATUS_OFF);
 
+            }
+        }
+        cat = Matrix[5][6];
+        for (int n=0;n<BLOCKS;){
+            int raw = ((int) (Math.random() * (RAW-1)));
+            int col = ((int) (Math.random() * (COL-1)));
+            if (Matrix[raw][col].getStatus()==Dot.STATUS_OFF){
+                n++;
+                Matrix[raw][col].setStatus(Dot.STATUS_ON);
+            }
+
+        }
     }
     public void redraw(){
         Canvas canvas=getHolder().lockCanvas();
