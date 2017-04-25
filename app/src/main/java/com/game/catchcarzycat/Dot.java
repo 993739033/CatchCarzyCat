@@ -5,11 +5,11 @@ package com.game.catchcarzycat;
  */
 
 public class Dot {
-    int x,y;
-    int status;
-    public static int STATUS_ON=1;
-    public static int STATUS_OFF=0;
-    public static int STATUS_IN=9;
+    private int x,y;
+    private int status;
+    public static final int STATUS_ON=1;
+    public static final int STATUS_OFF=0;
+    public static final int STATUS_IN=9;
     public Dot(int x, int y) {
         this.x = x;
         this.y = y;
